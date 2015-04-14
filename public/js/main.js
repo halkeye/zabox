@@ -4,15 +4,15 @@ var zaboxServices = angular.module('zaboxServices', ['ngResource']);
 zabox.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/emails', {
-        templateUrl: 'partials/email-list.html',
-        controller: 'EmailListCtrl'
+      when('/messages', {
+        templateUrl: 'partials/message-list.html',
+        controller: 'MessageListCtrl'
       }).
-      when('/emails/:emailId', {
-        templateUrl: 'partials/email-detail.html',
-        controller: 'EmailDetailCtrl'
+      when('/messages/:messagesId', {
+        templateUrl: 'partials/message-detail.html',
+        controller: 'MessageDetailCtrl'
       }).
       otherwise({
-        redirectTo: '/emails'
+        redirectTo: '/messages'
       });
   }]);

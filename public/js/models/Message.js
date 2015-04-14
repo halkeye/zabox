@@ -1,6 +1,6 @@
-zaboxServices.factory('Email', ['$resource',
+zaboxServices.factory('Message', ['$resource',
   function($resource){
-    return $resource('api/emails/:emailId.json', {}, {
+    return $resource('api/json/messages/:messageId', {}, {
       query: {method:'GET', isArray:true},
       get: {method:'GET'}
     });
