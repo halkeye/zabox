@@ -1,3 +1,3 @@
-zabox.controller('EmailDetailCtrl', ['$routeParams', 'Email', function ($scope, $routeParams, Email) {
+zabox.controller('EmailDetailCtrl', ['$scope', '$routeParams', 'Email', function ($scope, $routeParams, Email) {
   $scope.email = Email.get({ emailId: $routeParams.id });
 }]);
