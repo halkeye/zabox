@@ -1,0 +1,25 @@
+{
+  "name": "zabox",
+  "version": "0.0.1",
+  "homepage": "https://github.com/halkeye/zabox",
+  "authors": [
+    "Sean Everest <sean.b.everest@gmail.com>",
+    "Gavin Mogan <gavin@kodekoan.com>"
+  ],
+  "description": "An email test application to act as an SMTP server and store caught messages",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15",
+    "bootstrap": "~3.3.4",
+    "angular-route": "~1.3.15",
+    "angular-resource": "~1.3.15"
+  }
+}
