@@ -1,6 +1,6 @@
-<ul>
-  <li ng-repeat="message in messages">
-    <span>{{message.subject}}</span>
-    <p>{{message.from}}</p>
-  </li>
-</ul>
+<div class="list-group">
+  <a href="/#/messages/{{ message.id }}" ng-repeat="message in messages" class="list-group-item active">
+    <h4 class="list-group-item-heading">{{ message.subject }}</h4>
+    <p class="list-group-item-text">From: {{ message.from }}</p>
+  </a>
+</div>
