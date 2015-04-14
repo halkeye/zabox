@@ -1,4 +1,4 @@
-var zabox = angular.module('zabox', ['ngRoute', 'zaboxServices']);
+var zabox = angular.module('zabox', ['ngRoute', 'zaboxServices', 'ngAnimate']);
 var zaboxServices = angular.module('zaboxServices', ['ngResource']);
 
 zabox.config(['$routeProvider',
@@ -8,7 +8,7 @@ zabox.config(['$routeProvider',
         templateUrl: 'partials/message-list.html',
         controller: 'MessageListCtrl'
       }).
-      when('/messages/:messagesId', {
+      when('/messages/:messageId', {
         templateUrl: 'partials/message-detail.html',
         controller: 'MessageDetailCtrl'
       }).
