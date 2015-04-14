@@ -1,6 +1,7 @@
 'use strict';
 var express = require('express');
 var serveStatic = require('serve-static');
+var storage = require('./lib/storage/test.js');
 var app = express();
 
 var port = process.env.PORT || 3000;
@@ -16,11 +17,18 @@ app.get('/api/json', function(req, res) {
 });
 
 app.get('/api/json/messages', function(req, res) {
-  res.json([{id: "guid-goes-here", from: "Gavin Mogan <gavin@gavinmogan.com>", subject: "This is my first message"}]);
+  var ret = storage.all();
+  res.json(
+    ret.map(function(elm) {
+      return { id: elm.id, from: elm.from || '', subject: elm.subject || '', to: elm.to || [] };
+    })
+  );
 });
 
 app.get('/api/json/messages/:guid', function(req, res) {
-  res.json({id: "guid-goes-here", from: "Gavin Mogan <gavin@gavinmogan.com>", subject: "This is my first message"});
+  var message = storage.get(req.params.guid);
+  if (message) { res.json(message); }
+  else { res.status(404).send("not found"); }
 });
 
 app.listen(port, function() {
