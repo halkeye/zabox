@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-1">
+  <div class="col-md-10 col-md-offset-1">
     <a href="/#/messages" class="btn btn-default">Back</a>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-8 col-md-offset-1">
+  <div class="col-md-10 col-md-offset-1">
 
     <h1>{{ message.subject }}</h2>
     <p>{{ message.timestamp }}</p>
@@ -23,11 +23,11 @@
     <hr>
 
     <div class="btn-group">
-      <button class="btn btn-default" ng-click="showBody = 'HTML'">HTML</button>
-      <button class="btn btn-default" ng-click="showBody = 'Plain'">Plain</button>
+      <button class="btn btn-default" ng-class="{active: (showBody == 'HTML')}" ng-click="showBody = 'HTML'">HTML</button>
+      <button class="btn btn-default" ng-class="{active: (showBody == 'Plain')}" ng-click="showBody = 'Plain'">Plain</button>
     </div>
-    <div class="col-md-12" ng-bind-html="message.body.html" ng-show="showBody == 'HTML'"></div>
-    <div class="col-md-12" ng-show="showBody == 'Plain'">{{ message.body.plain }}</div>
+    <div class="col-md-12 message-content" ng-bind-html="message.body.html" ng-show="showBody == 'HTML'"></div>
+    <div class="col-md-12 message-content" ng-show="showBody == 'Plain'" ng-bind="message.body.plain"></div>
 
   </div>
 </div>
