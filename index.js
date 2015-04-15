@@ -1,10 +1,12 @@
 'use strict';
 var express = require('express');
 var serveStatic = require('serve-static');
-var storage = require('./lib/storage/test.js');
+var Storage = require('./lib/storage/test.js');
 var app = express();
 
 var port = process.env.PORT || 3000;
+
+var storage = new Storage();
 
 app.use(serveStatic(__dirname + '/public'));
 
