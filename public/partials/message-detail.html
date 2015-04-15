@@ -8,7 +8,7 @@
   <div class="col-md-10 col-md-offset-1">
 
     <h1>{{ message.subject }}</h2>
-    <p>{{ message.timestamp }}</p>
+    <p>{{ message.timestamp }} (<i><span am-time-ago="message.timestamp"></span></i>)</p>
     <p>From: {{ message.from }}</p>
     <p>To:
       <span ng-repeat="name in message.to">{{ name }}{{$last ? '' : ', '}}</span>
