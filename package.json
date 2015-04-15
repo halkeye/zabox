@@ -22,5 +22,12 @@
     "node-uuid": "^1.4.3",
     "serve-static": "^1.9.2",
     "smtp-server": "^1.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-debug": "^2.0.1",
+    "gulp-jasmine": "^2.0.1",
+    "jasmine": "^2.2.1",
+    "jasmine-spec-reporter": "^2.1.0"
   }
 }
