@@ -29,6 +29,7 @@
     "gulp-debug": "^2.0.1",
     "gulp-jasmine": "^2.0.1",
     "jasmine": "^2.2.1",
-    "jasmine-spec-reporter": "^2.1.0"
+    "jasmine-spec-reporter": "^2.1.0",
+    "supertest": "^0.15.0"
   }
 }
