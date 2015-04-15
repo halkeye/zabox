@@ -91,6 +91,7 @@
     "globals"       : {
       "angular"         : false,
       "zabox"           : true,
-      "zaboxServices"   : true
+      "zaboxServices"   : true,
+      "Favico"          : false
       }        // additional predefined global variables
 }
