@@ -2,11 +2,15 @@
 var express = require('express');
 var serveStatic = require('serve-static');
 var Storage = require('./lib/storage/test.js');
+var lessMiddleware = require('less-middleware');
 var app = express();
 
 var port = process.env.PORT || 3000;
 
 var storage = new Storage();
+app.use(lessMiddleware(__dirname + '/public/less', {
+    dest: __dirname + '/public'
+}));
 
 app.use(serveStatic(__dirname + '/public'));
 
