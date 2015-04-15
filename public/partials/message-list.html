@@ -12,7 +12,7 @@
 
   <div class="col-md-8">
     <div class="list-group">
-      <a href="/#/messages/{{ message.id }}" ng-repeat="message in messages | filter:query" class="fade list-group-item active">
+      <a href="/#/messages/{{ message.id }}" ng-repeat="message in messages | filter:query | orderBy:sortTimestamp:true" class="fade list-group-item">
         <h4 class="list-group-item-heading">{{ message.subject }}</h4>
         <p class="list-group-item-text">From: {{ message.from }}</p>
       </a>

@@ -18,6 +18,7 @@
   "homepage": "https://github.com/halkeye/zabox",
   "dependencies": {
     "express": "^4.12.3",
+    "less-middleware": "^2.0.1",
     "mailparser": "^0.5.0",
     "node-uuid": "^1.4.3",
     "serve-static": "^1.9.2",

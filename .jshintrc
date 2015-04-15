@@ -88,5 +88,9 @@
     "yui"           : false,    // Yahoo User Interface
 
     // Custom Globals
-    "globals"       : {}        // additional predefined global variables
+    "globals"       : {
+      "angular"         : false,
+      "zabox"           : true,
+      "zaboxServices"   : true
+      }        // additional predefined global variables
 }
