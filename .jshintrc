@@ -71,7 +71,7 @@
     "couch"         : false,    // CouchDB
     "devel"         : true,     // Development/debugging (alert, confirm, etc)
     "dojo"          : false,    // Dojo Toolkit
-    "jasmine"       : false,    // Jasmine
+    "jasmine"       : true,    // Jasmine
     "jquery"        : false,    // jQuery
     "mocha"         : true,     // Mocha
     "mootools"      : false,    // MooTools
@@ -92,6 +92,7 @@
       "angular"         : false,
       "zabox"           : true,
       "zaboxServices"   : true,
+      "$httpBackend"    : true,
       "Favico"          : false
       }        // additional predefined global variables
 }
