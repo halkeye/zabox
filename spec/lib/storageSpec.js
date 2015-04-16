@@ -19,7 +19,7 @@ describe('testing storage engines', function() {
     it('should expose settings', function() {
       var storage = new storageEngines['memory']();
       var settings = storage.settings();
-      expect(settings).toEqual({ messageLimit: true, maxMessages: 100 });
+      expect(settings).toEqual({ messageLimit: 100 });
     });
   });
 
@@ -27,7 +27,7 @@ describe('testing storage engines', function() {
     it('should expose settings', function() {
       var storage = new storageEngines['test']();
       var settings = storage.settings();
-      expect(settings).toEqual({ messageLimit: true, maxMessages: 100 });
+      expect(settings).toEqual({ messageLimit: 100 });
     });
   });
 
