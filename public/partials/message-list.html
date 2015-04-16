@@ -1,12 +1,29 @@
 <div class="row">
   <div class="col-md-4">
-    <div class="input-group stylish-input-group">
-        <input type="text" class="form-control"  placeholder="Search" ng-model="query">
-        <span class="input-group-addon">
-            <button type="submit">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </span>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="input-group stylish-input-group">
+            <input type="text" class="form-control"  placeholder="Search" ng-model="query">
+            <span class="input-group-addon">
+                <button type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 brand-box">
+        <h1>Zabox</h1>
+        <p>Point your development environment towards Zabox's dummy SMTP server and find them here.</p>
+        <p ng-show="smtpSettings.messageLimit">Zabox only stores the most recent {{ smtpSettings.maxMessages }} messages.</p>
+        <p ng-hide="smtpSettings.messageLimit">Zabox will store all messages until they are manually deleted.</p>
+        <p>Use the search box above to find what you're looking for. Click a message to see content and additional details.</p>
+
+        <p id="smtp-connect">smtp: {{ smtpSettings.hostname }}:{{ smtpSettings.port }}</p>
+
+      </div>
     </div>
   </div>
 

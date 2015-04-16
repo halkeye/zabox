@@ -9,6 +9,7 @@ describe( 'Message List Controller', function() {
   it( 'should get "messages" using xhr', function() {
     $httpBackend.expectGET('api/json/messages').
         respond([exampleMsg]);
+    $httpBackend.expectGET('api/json/smtp_settings').respond({ messageLimit: false });
     $httpBackend.flush();
     expect(scope.messages).toEqualData(
         [exampleMsg]);

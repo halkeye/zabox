@@ -14,4 +14,28 @@ describe('testing storage engines', function() {
       });
     });
   });
+
+  describe('Memory engine', function() {
+    it('should expose settings', function() {
+      var storage = new storageEngines['memory']();
+      var settings = storage.settings();
+      expect(settings).toEqual({ messageLimit: true, maxMessages: 100 });
+    });
+  });
+
+  describe('Test engine', function() {
+    it('should expose settings', function() {
+      var storage = new storageEngines['test']();
+      var settings = storage.settings();
+      expect(settings).toEqual({ messageLimit: true, maxMessages: 100 });
+    });
+  });
+
+  describe('Sqlite engine', function() {
+    it('should expose settings', function() {
+      var storage = new storageEngines['sqlite']();
+      var settings = storage.settings();
+      expect(settings).toEqual({ messageLimit: false });
+    });
+  });
 });

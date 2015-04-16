@@ -1,17 +1,29 @@
 @import "../bower_components/bootstrap/less/bootstrap.less";
 
-@body-bg:               #333;
-@text-color:            #fff;
-@brand-primary:         darken(#66cc00, 6.5%);
+@body-bg: #333;
+@text-color: #fff;
+@brand-primary: darken(#66cc00, 6.5%);
 
-@icon-font-path:        "../bower_components/bootstrap/fonts/";
+@icon-font-path: "../bower_components/bootstrap/fonts/";
 
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-}
+@gray-text: #737373;
+
+@font-family-sans-serif: 'Source Sans Pro', sans-serif;
 
 .container {
   margin-top: 30px;
+}
+
+.brand-box {
+  color: @gray-text;
+}
+.brand-box h1 {
+  color: @gray-text;
+  text-shadow: 1px 1px 6px #000;
+}
+
+#smtp-connect {
+  font-size: 20px;
 }
 
 .stylish-input-group .input-group-addon{
