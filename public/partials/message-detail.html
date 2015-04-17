@@ -23,8 +23,8 @@
     <hr>
 
     <div class="btn-group">
-      <button class="btn btn-default" ng-class="{active: (showBody == 'HTML')}" ng-click="showBody = 'HTML'">HTML</button>
-      <button class="btn btn-default" ng-class="{active: (showBody == 'Plain')}" ng-click="showBody = 'Plain'">Plain</button>
+      <button class="btn btn-default" ng-disabled='!message.body.html' ng-class="{active: (showBody == 'HTML')}" ng-click="showBody = 'HTML'">HTML</button>
+      <button class="btn btn-default" ng-disabled='!message.body.plain' ng-class="{active: (showBody == 'Plain')}" ng-click="showBody = 'Plain'">Plain</button>
     </div>
     <div class="col-md-12 message-content" ng-bind-html="message.body.html" ng-show="showBody == 'HTML'"></div>
     <div class="col-md-12 message-content" style="white-space: pre;" ng-show="showBody == 'Plain'" ng-bind="message.body.plain"></div>
