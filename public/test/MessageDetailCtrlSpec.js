@@ -21,4 +21,12 @@ describe( 'Message Detail Controller', function() {
     expect(scope.message).toEqualData(exampleMsg);
   });
 
+  it( 'should show "Plain" when HTML is undefined', function() {
+    $httpBackend.expectGET('api/json/messages/a233f8d-djfk').
+        respond(exampleMsg);
+    $httpBackend.flush();
+    expect(scope.showBody).toEqual('Plain');
+  });
+
+
 });

@@ -27,7 +27,7 @@
       <button class="btn btn-default" ng-class="{active: (showBody == 'Plain')}" ng-click="showBody = 'Plain'">Plain</button>
     </div>
     <div class="col-md-12 message-content" ng-bind-html="message.body.html" ng-show="showBody == 'HTML'"></div>
-    <div class="col-md-12 message-content" ng-show="showBody == 'Plain'" ng-bind="message.body.plain"></div>
+    <div class="col-md-12 message-content" style="white-space: pre;" ng-show="showBody == 'Plain'" ng-bind="message.body.plain"></div>
 
   </div>
 </div>

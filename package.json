@@ -1,6 +1,6 @@
 {
   "name": "zabox",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An email test application to act as an SMTP server and store caught messages",
   "main": "index.js",
   "scripts": {
