@@ -4,7 +4,8 @@
   "description": "An email test application to act as an SMTP server and store caught messages",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
