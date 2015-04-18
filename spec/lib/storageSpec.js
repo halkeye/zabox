@@ -12,6 +12,10 @@ describe('testing storage engines', function() {
         var storage = new storageEngines[engine]();
         expect(storage).not.toBe(null);
       });
+      it('has description', function() {
+        expect(storageEngines[engine].description).toBeDefined();
+        expect(storageEngines[engine].description).not.toBe(null);
+      });
     });
   });
 
