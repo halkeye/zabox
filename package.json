@@ -11,7 +11,10 @@
     "type": "git",
     "url": "https://github.com/halkeye/zabox.git"
   },
-  "author": "Gavin Mogan <npm@halkeye.net> (http://www.halkeye.net/)",
+  "contributors": [
+    "Sean Everest <sean.b.everest@gmail.com>",
+    "Gavin Mogan <gavin@gavinmogan.com> (http://www.gavinmogan.com/)",
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/halkeye/zabox/issues"

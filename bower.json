@@ -4,7 +4,7 @@
   "homepage": "https://github.com/halkeye/zabox",
   "authors": [
     "Sean Everest <sean.b.everest@gmail.com>",
-    "Gavin Mogan <gavin@kodekoan.com>"
+    "Gavin Mogan <gavin@gavinmogan.com>"
   ],
   "description": "An email test application to act as an SMTP server and store caught messages",
   "license": "MIT",
