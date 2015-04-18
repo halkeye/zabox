@@ -6,4 +6,5 @@ node_js:
   - '0.10'
 before_script:
   - npm install -g gulp
+  - bower install
 script: gulp travis
