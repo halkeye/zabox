@@ -10,7 +10,7 @@ var paths = {
 	tests: ['spec/**/*Spec.js']
 };
 
-gulp.task('test', function () {
+gulp.task('jasmine', function () {
 	return gulp.src(paths.tests)
 		.pipe(debug({title: 'jasmine:'}))
     .pipe(jasmine({verbose:true}));
@@ -38,3 +38,6 @@ gulp.task('karma', function() {
       this.emit('end'); //instead of erroring the stream, end it
     });
 });
+
+gulp.task('test', ['jasmine'], function() {});
+gulp.task('travis', ['jasmine','karma'], function() {});
