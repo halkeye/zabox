@@ -12,6 +12,9 @@ zabox.config(['$routeProvider',
         templateUrl: 'partials/message-detail.html',
         controller: 'MessageDetailCtrl'
       }).
+      when('/404', {
+        templateUrl: 'partials/404.html'
+      }).
       otherwise({
         redirectTo: '/messages'
       });

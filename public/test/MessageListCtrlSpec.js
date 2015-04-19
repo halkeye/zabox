@@ -1,9 +1,20 @@
 'use strict';
 
 describe( 'Message List Controller', function() {
+  var scope, ctrl, $httpBackend, location;
 
-  beforeEach(function () {
-    this.setupController('MessageListCtrl');
+  beforeEach(function() {
+      inject(function(_$httpBackend_, _$location_, $rootScope, $controller) {
+        $httpBackend = _$httpBackend_;
+        location = _$location_;
+        scope = $rootScope.$new();
+
+        var ctrl_data = {
+          $scope: scope,
+        };
+
+        ctrl = $controller('MessageListCtrl', ctrl_data);
+      });
   });
 
   it( 'should get "messages" using xhr', function() {
