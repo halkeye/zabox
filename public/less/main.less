@@ -40,12 +40,27 @@
 }
 
 .message-content {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
   background-color: #fff;
   color: #000;
+  border-radius: 0px 0px 5px 5px;
+  margin-top: -1px;
+  padding: 20px 10px;
 }
+
+.nav-tabs > li > a {
+  cursor:pointer;
+  font-size: 16px;
+  color: #fff;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  color: #000;
+  background-color:#fff
+}
+.nav-tabs > li > a:hover {
+  color: #E5E5E5;
+  background-color: #6F6F6F;
+  border-color: #333;
+}
+
 
 @import "animations.less";
