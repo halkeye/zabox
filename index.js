@@ -1,5 +1,6 @@
 'use strict';
 var program = require('commander');
+var Storage = require('./lib/storage');
 
 program
   .version(require(__dirname + '/package.json').version)
@@ -11,18 +12,17 @@ program
   .parse(process.argv);
 
 
+var allStorages = Storage.allStorages();
 if (program.listStorages)
 {
-  require('fs').readdirSync(__dirname + '/lib/storage/').forEach(function(file) {
-    var Storage = require(__dirname + '/lib/storage/' + file);
-    console.log(' - ' + file.replace('.js', ''));
-    console.log('   * ' + Storage.description);
+  Object.keys(allStorages).forEach(function(name) {
+    console.log(' - ' + name);
+    console.log('   * ' + allStorages[name].description);
   });
   process.exit();
 }
 
-var Storage = require('./lib/storage/' + program.storage + '.js')
-var storage = new Storage();
+var storage = new allStorages[program.storage]();
 var WebServer = require('./lib/webserver');
 var SmtpServer = require('./lib/smtp');
 

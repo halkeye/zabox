@@ -1,11 +1,11 @@
 var fs = require('fs');
 
 describe('testing storage engines', function() {
-  var storageEngines = {};
-  fs.readdirSync(__dirname + '/../../lib/storage/').forEach(function(file) {
-    var Storage = require(__dirname + '/../../lib/storage/' + file);
-    storageEngines[file.replace('.js', '')] = Storage;
+  var storageEngines = require('../../lib/storage').allStorages();
+  it ('allStorages should contain all storages', function() {
+    expect(Object.keys(storageEngines).sort()).toEqual(['memory', 'sqlite', 'test']);
   });
+
   Object.keys(storageEngines).forEach(function(engine) {
     describe(engine + " Follows basic specs", function() {
       it('blah', function() {
