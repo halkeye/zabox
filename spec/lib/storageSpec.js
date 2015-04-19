@@ -16,6 +16,12 @@ describe('testing storage engines', function() {
         expect(storageEngines[engine].description).toBeDefined();
         expect(storageEngines[engine].description).not.toBe(null);
       });
+      it('overriding options works', function() {
+        var storage = new storageEngines[engine]({ messageLimit: 5});
+        expect(storage).not.toBe(null);
+        var settings = storage.settings();
+        expect(settings).toEqual({ messageLimit: 5 });
+      });
     });
   });
 
