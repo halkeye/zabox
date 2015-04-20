@@ -59,6 +59,15 @@ describe('testing storage engines', function() {
           cb();
         });
       });
+      it('get specific message', function(cb) {
+        var storage = new storageEngines[engine]({ messageLimit: 5});
+        expect(storage).not.toBe(null);
+
+        storage.get("asd0891o3iewqdsai").then(function() {
+          console.log('bad-done', arguments);
+          cb.fail();
+        }, cb);
+      });
     });
   });
 

@@ -25,26 +25,27 @@ describe('WebServer', function() {
           .get(url)
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
-          .expect(function(res) {
-            expect(res.body).toEqual(responses[url]);
-            expect(res.status).toEqual(200);
+          .expect(200)
+          .expect(responses[url])
+          .end(function(err, res) {
+            if (err) return done.fail(err);
+            done();
           })
-          .expect(200, done);
       })
     });
   });
 
-  describe('GET /app/json/messages/badbadbad', function(){
+  describe('GET /api/json/messages/badbadbad', function(){
     it('doesnt returns json api', function(done){
       request(webserver.getApp())
-        .get('/app/json/messages/badbadbad')
+        .get('/api/json/messages/badbadbad')
         .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(function(res) {
-          expect(res.body).toEqual('');
-          expect(res.status).toEqual(404);
+        .expect(404)
+        .expect('not found')
+        .end(function(err, res) {
+          if (err) return done.fail(err);
+          done();
         })
-        .expect(404, done);
     })
   });
 });
