@@ -20,12 +20,10 @@
       <span ng-repeat="name in message.cc">{{ name }}{{$last ? '' : ', '}}</span>
     </p>
 
-    <hr>
-
-    <div class="btn-group">
-      <button class="btn btn-default" ng-disabled='!message.body.html' ng-class="{active: (showBody == 'HTML')}" ng-click="showBody = 'HTML'">HTML</button>
-      <button class="btn btn-default" ng-disabled='!message.body.plain' ng-class="{active: (showBody == 'Plain')}" ng-click="showBody = 'Plain'">Plain</button>
-    </div>
+    <ul class="nav nav-tabs">
+      <li ng-class="{active: (showBody == 'HTML')}" ng-hide='!message.body.html' ><a ng-click="showBody = 'HTML'">HTML</a></li>
+      <li ng-class="{active: (showBody == 'Plain')}" ng-hide='!message.body.plain' ><a ng-click="showBody = 'Plain'">Plain</a></li>
+    </ul>
     <div class="col-md-12 message-content" ng-bind-html="message.body.html" ng-show="showBody == 'HTML'"></div>
     <div class="col-md-12 message-content" style="white-space: pre;" ng-show="showBody == 'Plain'" ng-bind="message.body.plain"></div>
 
