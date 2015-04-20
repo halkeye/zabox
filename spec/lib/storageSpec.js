@@ -20,7 +20,33 @@ describe('testing storage engines', function() {
         var storage = new storageEngines[engine]({ messageLimit: 5});
         expect(storage).not.toBe(null);
         var settings = storage.settings();
-        expect(settings).toEqual({ messageLimit: 5 });
+        expect(settings.messageLimit).toEqual(5);
+      });
+      it('messages over limit get trimmed', function(cb) {
+        var storage = new storageEngines[engine]({ messageLimit: 5});
+        expect(storage).not.toBe(null);
+        var messages = [
+          {id: 'abc-123-456-1', body: { plain: "foo1" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
+          {id: 'abc-123-456-2', body: { plain: "foo2" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
+          {id: 'abc-123-456-3', body: { plain: "foo3" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
+          {id: 'abc-123-456-4', body: { plain: "foo4" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
+          {id: 'abc-123-456-5', body: { plain: "foo5" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
+          {id: 'abc-123-456-6', body: { plain: "foo6" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
+          {id: 'abc-123-456-7', body: { plain: "foo7" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'}
+        ];
+        messages.forEach(function(message) {
+          storage.store(message);
+        });
+
+        storage.all().done(function(results) {
+          expect(results.length).toBe(5);
+          [5,4,3,2,1].forEach(function(idx) {
+            var actual = results[results.length-(idx-1)];
+            var expected = messages[messages.length-(idx-1)];
+            expect(actual).toEqual(expected);
+          });
+          cb();
+        });
       });
     });
   });
@@ -45,7 +71,7 @@ describe('testing storage engines', function() {
     it('should expose settings', function() {
       var storage = new storageEngines['sqlite']();
       var settings = storage.settings();
-      expect(settings).toEqual({ messageLimit: false });
+      expect(settings).toEqual({ messageLimit: false, filename: ':memory:' });
     });
   });
 });
