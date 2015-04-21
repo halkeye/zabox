@@ -5,16 +5,16 @@ var karma = require('gulp-karma');
 var plumber = require('gulp-plumber');
 
 var paths = {
-	//scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
+  //scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
   //images: 'client/img/**/*'
-	libs: ['lib/**/*.js'],
-	tests: ['spec/**/*Spec.js']
+  libs: ['lib/**/*.js'],
+  tests: ['spec/**/*Spec.js']
 };
 
 gulp.task('jasmine', function () {
-	return gulp.src(paths.tests)
+  return gulp.src(paths.tests)
     .pipe(plumber())
-		.pipe(debug({title: 'jasmine:'}))
+    .pipe(debug({title: 'jasmine:'}))
     .pipe(jasmine({verbose:true}));
 });
 
