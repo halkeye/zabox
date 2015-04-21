@@ -13,6 +13,7 @@ var paths = {
 
 gulp.task('jasmine', function () {
 	return gulp.src(paths.tests)
+    .pipe(plumber())
 		.pipe(debug({title: 'jasmine:'}))
     .pipe(jasmine({verbose:true}));
 });
