@@ -25,6 +25,7 @@ module.exports = function(config) {
       './public/bower_components/favico.js/favico.js',
       './public/bower_components/jquery/dist/jquery.js',
       './public/bower_components/moment/moment.js',
+      './public/bower_components/ngDialog/js/ngDialog.min.js',
       './public/js/main.js',
       './public/js/**/*.js',
       './public/test/**/*.js'

@@ -1,6 +1,6 @@
 'use strict';
 
-describe( 'Message List Controller', function() {
+describe( 'Settings Controller', function() {
   var scope, ctrl, $httpBackend, location;
 
   beforeEach(function() {
@@ -13,16 +13,13 @@ describe( 'Message List Controller', function() {
           $scope: scope,
         };
 
-        ctrl = $controller('MessageListCtrl', ctrl_data);
+        ctrl = $controller('SettingsCtrl', ctrl_data);
       });
   });
 
-  it( 'should get "messages" using xhr', function() {
-    $httpBackend.expectGET('api/json/messages').
-        respond([exampleMsg]);
+  it( 'should get "smtp_settings" using xhr', function() {
+    $httpBackend.expectGET('api/json/smtp_settings').respond({ messageLimit: false });
     $httpBackend.flush();
-    expect(scope.messages).toEqualData(
-        [exampleMsg]);
   });
 
 });

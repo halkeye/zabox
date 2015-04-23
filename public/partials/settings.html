@@ -1,0 +1,5 @@
+<p>Point your development environment towards Zabox's dummy SMTP server and find them here.</p>
+<p ng-show="smtpSettings.messageLimit">Zabox only stores the most recent {{ smtpSettings.messageLimit }} messages.</p>
+<p ng-hide="smtpSettings.messageLimit">Zabox will store all messages until they are manually deleted.</p>
+<p>Use the search box to find what you're looking for. Click a message to see content and additional details.</p>
+<p id="smtp-connect">smtp: {{ smtpSettings.hostname }}:{{ smtpSettings.port }}</p>

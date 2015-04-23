@@ -1,4 +1,6 @@
 @import "../bower_components/bootstrap/less/bootstrap.less";
+@import "../bower_components/ngDialog/css/ngDialog.css";
+@import "../bower_components/ngDialog/css/ngDialog-theme-default.css";
 
 @body-bg: #333;
 @text-color: #fff;
@@ -10,7 +12,7 @@
 
 @font-family-sans-serif: 'Source Sans Pro', sans-serif;
 
-.container {
+.container.content {
   margin-top: 30px;
 }
 
@@ -64,6 +66,21 @@
   color: #E5E5E5;
   background-color: #6F6F6F;
   border-color: #333;
+}
+
+.table-hover>tbody>tr:hover {
+  background-color: lighten(@body-bg, 10%);
+  cursor:pointer;
+}
+
+.outlook-container {
+}
+.outlook-message-list {
+  overflow-y: auto;
+}
+.outlook-message-detail {
+  border-top: 2px solid #fff;
+  overflow-y: auto;
 }
 
 @import "animations.less";
