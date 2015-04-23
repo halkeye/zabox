@@ -1,8 +1,8 @@
 'use strict';
 
-zabox.controller('MessageListCtrl', ['$scope', '$routeParams', 'Message', 'faviconService', 'ngDialog', function ($scope, $routeParams, Message, faviconService, ngDialog) {
+zabox.controller('MessageListCtrl', ['$scope', '$routeParams', 'Message', 'faviconService', 'ngDialog', 'ZaboxService', function ($scope, $routeParams, Message, faviconService, ngDialog, ZaboxService) {
 
-  $scope.outlookView = true;
+  $scope.outlookView = ZaboxService.outlookView;
   $scope.query = '';
 
   $scope.messages = Message.query(function (data) {
@@ -15,7 +15,8 @@ zabox.controller('MessageListCtrl', ['$scope', '$routeParams', 'Message', 'favic
   };
 
   $scope.toggleView = function () {
-    $scope.outlookView = !$scope.outlookView
+    ZaboxService.outlookView = !ZaboxService.outlookView;
+    $scope.outlookView = ZaboxService.outlookView;
   };
 
   $scope.showSettings = function () {
