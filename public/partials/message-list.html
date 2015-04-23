@@ -1,8 +1,8 @@
-<div class="fade" ng-include="'partials/outlook-view-nav.html'" ng-show="outlookView"></div>
+<div class="fade" ng-include="'partials/includes/outlook-view-nav.html'" ng-show="outlookView"></div>
 
 <div class="container content" ng-class="{outlook: outlookView}">
 
-  <div class="fade" ng-include="'partials/list-view-list.html'" ng-hide="outlookView"></div>
-  <div class="fade" ng-include="'partials/outlook-view-list.html'" ng-show="outlookView"></div>
+  <div class="fade" ng-include="'partials/includes/list-view.html'" ng-hide="outlookView"></div>
+  <div class="fade" ng-include="'partials/includes/outlook-view.html'" ng-show="outlookView"></div>
 
 </div>
