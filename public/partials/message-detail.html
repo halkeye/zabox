@@ -1,31 +1,15 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <a href="/#/messages" class="btn btn-default">Back</a>
+<div class="container content">
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <a href="/#/messages" class="btn btn-default">Back</a>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-
-    <h1>{{ message.subject }}</h2>
-    <p>{{ message.timestamp }} (<i><span am-time-ago="message.timestamp"></span></i>)</p>
-    <p>From: {{ message.from }}</p>
-    <p>To:
-      <span ng-repeat="name in message.to">{{ name }}{{$last ? '' : ', '}}</span>
-    </p>
-    <p>BCC:
-      <span ng-repeat="name in message.bcc">{{ name }}{{$last ? '' : ', '}}</span>
-    </p>
-    <p>CC:
-      <span ng-repeat="name in message.cc">{{ name }}{{$last ? '' : ', '}}</span>
-    </p>
-
-    <ul class="nav nav-tabs">
-      <li ng-class="{active: (showBody == 'HTML')}" ng-hide='!message.body.html' ><a ng-click="showBody = 'HTML'">HTML</a></li>
-      <li ng-class="{active: (showBody == 'Plain')}" ng-hide='!message.body.plain' ><a ng-click="showBody = 'Plain'">Plain</a></li>
-    </ul>
-    <div class="col-md-12 message-content" ng-bind-html="message.body.html" ng-show="showBody == 'HTML'"></div>
-    <div class="col-md-12 message-content" style="white-space: pre;" ng-show="showBody == 'Plain'" ng-bind="message.body.plain"></div>
-
+  <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-10 col-md-offset-1" ng-include="'partials/includes/message.html'"></div>
+      </div>
   </div>
+
 </div>

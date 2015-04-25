@@ -1,4 +1,4 @@
-var zabox = angular.module('zabox', ['ngRoute', 'zaboxServices', 'ngAnimate', 'ngSanitize', 'angularMoment']);
+var zabox = angular.module('zabox', ['ngRoute', 'zaboxServices', 'ngAnimate', 'ngSanitize', 'angularMoment', 'ngDialog']);
 var zaboxServices = angular.module('zaboxServices', ['ngResource']);
 
 zabox.config(['$routeProvider',

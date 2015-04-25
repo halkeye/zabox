@@ -1,39 +1,8 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="input-group stylish-input-group">
-            <input type="text" class="form-control"  placeholder="Search" ng-model="query">
-            <span class="input-group-addon">
-                <button type="submit">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-        </div>
-      </div>
-    </div>
+<div class="fade" ng-include="'partials/includes/outlook-view-nav.html'" ng-show="outlookView"></div>
 
-    <div class="row">
-      <div class="col-md-12 brand-box">
-        <h1>Zabox</h1>
-        <p>Point your development environment towards Zabox's dummy SMTP server and find them here.</p>
-        <p ng-show="smtpSettings.messageLimit">Zabox only stores the most recent {{ smtpSettings.messageLimit }} messages.</p>
-        <p ng-hide="smtpSettings.messageLimit">Zabox will store all messages until they are manually deleted.</p>
-        <p>Use the search box above to find what you're looking for. Click a message to see content and additional details.</p>
+<div class="container content" ng-class="{outlook: outlookView}">
 
-        <p id="smtp-connect">smtp: {{ smtpSettings.hostname }}:{{ smtpSettings.port }}</p>
+  <div class="fade" ng-include="'partials/includes/list-view.html'" ng-hide="outlookView"></div>
+  <div class="fade" ng-include="'partials/includes/outlook-view.html'" ng-show="outlookView"></div>
 
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-8">
-    <div class="list-group">
-      <a href="/#/messages/{{ message.id }}" ng-repeat="message in messages | filter:query | orderBy:sortTimestamp:true" class="fade list-group-item">
-        <i><span class="pull-right" am-time-ago="message.timestamp"></span></i>
-        <h4 class="list-group-item-heading">{{ message.subject }}</h4>
-        <p class="list-group-item-text">From: {{ message.from }}</p>
-      </a>
-    </div>
-  </div>
 </div>

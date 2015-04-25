@@ -1,0 +1,24 @@
+<div class="row outlook-container">
+
+  <div class="row">
+    <div class="col-md-12 outlook-message-list" ng-style="third()" resize>
+      <div ng-hide="messages.length">No messages</div>
+      <table class="table table-hover">
+        <tbody>
+            <tr ng-repeat="message in messages | filter:query | orderBy:sortTimestamp:true" class="fade" ng-click="setMessage(message.id)">
+              <td>{{ message.subject }}</td>
+              <td>From: {{ message.from }}</td>
+              <td><i><span class="pull-right" am-time-ago="message.timestamp"></span></i></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 outlook-message-detail" ng-style="twothird()" resize>
+      <div class="fade" ng-include="'partials/includes/message.html'" ng-show="message"></div>
+    </div>
+  </div>
+
+</div>

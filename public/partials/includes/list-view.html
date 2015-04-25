@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-12 brand-box">
+        <h1 class="brand-header" ng-class="{'brand-outlook': outlookView}">Zabox</h1>
+        <button class="btn btn-primary" ng-click="toggleView()">Switch to outlook view</button>
+        <button class="btn btn-primary" ng-click="showSettings()">About</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="input-group stylish-input-group">
+            <input type="text" class="form-control"  placeholder="Search" ng-model="$parent.query">
+            <span class="input-group-addon">
+                <button type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 list-message-list">
+    <div ng-hide="messages.length">No messages</div>
+    <div class="list-group">
+      <a href="/#/messages/{{ message.id }}" ng-repeat="message in messages | filter:query | orderBy:sortTimestamp:true" class="fade list-group-item">
+        <i><span class="pull-right" am-time-ago="message.timestamp"></span></i>
+        <h4 class="list-group-item-heading">{{ message.subject }}</h4>
+        <p class="list-group-item-text">From: {{ message.from }}</p>
+      </a>
+    </div>
+  </div>
+</div>
