@@ -32,7 +32,7 @@ describe('testing storage engines', function() {
           {id: 'abc-123-456-4', body: { plain: "foo4" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
           {id: 'abc-123-456-5', body: { plain: "foo5" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
           {id: 'abc-123-456-6', body: { plain: "foo6" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
-          {id: 'abc-123-456-7', body: { plain: "foo7" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'}
+          {id: 'abc-123-456-7', body: { plain: "foo7" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['Head: 1']}
         ];
         messages.forEach(function(message) {
           storage.store(message);
@@ -51,7 +51,7 @@ describe('testing storage engines', function() {
       it('get specific message', function(cb) {
         var storage = new storageEngines[engine]({ messageLimit: 5});
         expect(storage).not.toBe(null);
-        var message = {id: 'abc-723-456-7', body: { plain: "foo7" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'};
+        var message = {id: 'abc-723-456-7', body: { plain: "foo7" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah']};
         storage.store(message);
 
         storage.get(message.id).done(function(result) {
@@ -59,14 +59,11 @@ describe('testing storage engines', function() {
           cb();
         });
       });
-      it('get specific message', function(cb) {
+      it('get missing message', function(cb) {
         var storage = new storageEngines[engine]({ messageLimit: 5});
         expect(storage).not.toBe(null);
 
-        storage.get("asd0891o3iewqdsai").then(function() {
-          console.log('bad-done', arguments);
-          cb.fail();
-        }, cb);
+        storage.get("asd0891o3iewqdsai").then(cb.fail, cb);
       });
     });
   });
