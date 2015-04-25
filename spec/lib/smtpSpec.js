@@ -23,6 +23,9 @@ describe('SmtpServer', function() {
       cb();
     });
   });
+  afterEach(function(cb) {
+    this.smtpServer.close(cb);
+  });
 
   it('Has Working Raw', function(cb) {
     var self = this;
@@ -96,12 +99,12 @@ describe('SmtpServer', function() {
     };
 
     self.transport.sendMail(message, function(err) {
+      self.transport.close();
       self.storage.get('_my-random-message-id_example_com_').then(function(message) {
         expect(message).not.toBeNull();
         expect(message.body.plain).toEqual('Hello to myself!\nFrom myself');
         cb();
       });
-      self.transport.close();
     });
 
   });
