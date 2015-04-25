@@ -2,6 +2,7 @@
 
   <div class="row">
     <div class="col-md-12 outlook-message-list" ng-style="third()" resize>
+      <div ng-hide="messages.length">No messages</div>
       <table class="table table-hover">
         <tbody>
             <tr ng-repeat="message in messages | filter:query | orderBy:sortTimestamp:true" class="fade" ng-click="setMessage(message.id)">
