@@ -1,1 +1,1 @@
-# zabox [![Build Status](https://travis-ci.org/halkeye/zabox.svg?branch=master)](https://travis-ci.org/halkeye/zabox) [![Dependency Status](https://gemnasium.com/halkeye/zabox.svg)](https://gemnasium.com/halkeye/zabox)
+# zabox [![Build Status](https://travis-ci.org/halkeye/zabox.svg?branch=master)](https://travis-ci.org/halkeye/zabox) [![Dependency Status](https://gemnasium.com/halkeye/zabox.svg)](https://gemnasium.com/halkeye/zabox) [![codecov.io](https://codecov.io/github/halkeye/zabox/coverage.svg?branch=master)](https://codecov.io/github/halkeye/zabox?branch=master)
