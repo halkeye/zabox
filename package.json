@@ -3,7 +3,9 @@
   "version": "1.1.0",
   "description": "An email test application to act as an SMTP server and store caught messages",
   "main": "index.js",
-  "engines" : { "node" : ">=0.10" },
+  "engines": {
+    "node": ">=0.10"
+  },
   "scripts": {
     "test": "gulp test",
     "start": "node index.js",
