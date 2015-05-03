@@ -3,12 +3,13 @@ var debug = require('gulp-debug');
 var jasmine = require('gulp-jasmine');
 var karma = require('gulp-karma');
 var plumber = require('gulp-plumber');
+var istanbul = require('gulp-istanbul');
 
 var paths = {
-  //scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
-  //images: 'client/img/**/*'
   libs: ['lib/**/*.js'],
-  tests: ['spec/**/*Spec.js']
+  tests: ['spec/**/*Spec.js'],
+  frontendFiles: [ 'public/js/**/*.js' ],
+  frontendTests: [ 'public/test/**/*.js' ]
 };
 
 gulp.task('jasmine', function () {
@@ -22,6 +23,20 @@ gulp.task('jasmine', function () {
 gulp.task('watch', function() {
   gulp.watch(paths.tests, ['test']);
   gulp.watch(paths.libs, ['test']);
+});
+
+gulp.task('jasmine-codecov', function(cb) {
+  gulp.src(paths.libs)
+    .pipe(plumber())
+    .pipe(istanbul({includeUntested: true}))
+    .pipe(istanbul.hookRequire())
+    .on('finish', function () {
+      gulp.src(paths.tests)
+        .pipe(plumber())
+        .pipe(jasmine({verbose:true}))
+        .pipe(istanbul.writeReports({dir: './coverage/backend'}))
+        .on('end', cb);
+    });
 });
 
 gulp.task('karma', function() {
@@ -39,4 +54,4 @@ gulp.task('karma', function() {
 });
 
 gulp.task('test', ['jasmine'], function() {});
-gulp.task('travis', ['jasmine','karma'], function() {});
+gulp.task('travis', ['jasmine-codecov','karma'], function() {});

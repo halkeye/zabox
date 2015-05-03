@@ -9,7 +9,8 @@
   "scripts": {
     "test": "gulp test",
     "start": "node index.js",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "travis": "gulp jasmine-codecov && gulp karma-codecov"
   },
   "repository": {
     "type": "git",
@@ -39,8 +40,10 @@
     "sqlite3": "^3.0.5"
   },
   "devDependencies": {
+    "codecov.io": "^0.1.0",
     "gulp": "^3.8.11",
     "gulp-debug": "^2.0.1",
+    "gulp-istanbul": "^0.8.1",
     "gulp-jasmine": "^2.0.1",
     "gulp-karma": "0.0.4",
     "gulp-plumber": "^1.0.0",
@@ -49,6 +52,7 @@
     "jasmine-spec-reporter": "^2.1.0",
     "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.7",
+    "karma-coverage": "^0.3.1",
     "karma-firefox-launcher": "^0.1.4",
     "karma-jasmine": "^0.3.5",
     "karma-phantomjs-launcher": "^0.1.4",
