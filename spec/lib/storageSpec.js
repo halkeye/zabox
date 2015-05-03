@@ -28,10 +28,10 @@ describe('testing storage engines', function() {
         var messages = [
           {id: 'abc-123-456-1', body: { plain: "foo1" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
           {id: 'abc-123-456-2', body: { plain: "foo2" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
-          {id: 'abc-123-456-3', body: { plain: "foo3" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
-          {id: 'abc-123-456-4', body: { plain: "foo4" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
-          {id: 'abc-123-456-5', body: { plain: "foo5" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
-          {id: 'abc-123-456-6', body: { plain: "foo6" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
+          {id: 'abc-123-456-3', body: { plain: "foo3" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', bcc: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com'], to: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com']},
+          {id: 'abc-123-456-4', body: { html: '<b>hi</b>', plain: "foo4" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', bcc: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com']},
+          {id: 'abc-123-456-5', body: { plain: "foo5" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', cc: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com']},
+          {id: 'abc-123-456-6', body: { plain: "foo6" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', to: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com']},
           {id: 'abc-123-456-7', body: { plain: "foo7" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['Head: 1']}
         ];
         messages.forEach(function(message) {
