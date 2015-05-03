@@ -51,6 +51,7 @@ module.exports = function(config) {
     coverageReporter: {
       type: 'lcovonly',
       dir : 'coverage/frontend/',
+      includeAllSources: true
     },
 
 
