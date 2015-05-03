@@ -9,8 +9,7 @@
   "scripts": {
     "test": "gulp test",
     "start": "node index.js",
-    "postinstall": "bower install",
-    "travis": "gulp jasmine-codecov && gulp karma-codecov"
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",

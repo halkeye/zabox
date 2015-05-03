@@ -8,7 +8,7 @@ before_script:
   - npm install -g bower
   - bower install
 script:
-  - npm run travis
+  - gulp travis
 after_success:
   - cat ./coverage/backend/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
   - cat ./coverage/frontend/*/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
