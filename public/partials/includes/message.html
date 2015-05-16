@@ -17,7 +17,7 @@
   <li ng-class="{active: (showBody == 'Source')}" ng-hide='!message.raw' ><a ng-click="showBody = 'Source'">Source</a></li>
 </ul>
 <div class="col-md-12 message-content" ng-bind-html="message.body.html" ng-show="showBody == 'HTML'"></div>
-<div class="col-md-12 message-content" style="white-space: pre;" ng-show="showBody == 'Plain'" ng-bind="message.body.plain"></div>
+<div class="col-md-12 message-content" style="white-space: pre-wrap;" ng-show="showBody == 'Plain'" ng-bind="message.body.plain"></div>
 <div class="col-md-12 message-content" ng-show="showBody == 'Source'">
-  <div ng-repeat="chunk in message.raw" style="white-space: pre;">{{ chunk }}</div>
+  <div ng-repeat="chunk in message.raw" style="white-space: pre-wrap;">{{ chunk }}</div>
 </div>
