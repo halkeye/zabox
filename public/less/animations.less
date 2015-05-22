@@ -21,3 +21,58 @@
 .container.content.outlook {
   margin-top: 70px;
 }
+
+.at-repeat-fly-reverse-in.ng-enter, .at-repeat-fly-reverse-out.ng-leave {
+    -webkit-transition: all 600ms ease, opacity 300ms ease;
+    -moz-transition: all 600ms ease, opacity 300ms ease;
+    -o-transition: all 600ms ease, opacity 300ms ease;
+    transition: all 600ms ease, opacity 300ms ease;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.at-repeat-fly-reverse-in.ng-enter, .at-repeat-fly-reverse-out.ng-leave {
+    -webkit-transition: all 600ms ease, opacity 300ms ease;
+    -moz-transition: all 600ms ease, opacity 300ms ease;
+    -o-transition: all 600ms ease, opacity 300ms ease;
+    transition: all 600ms ease, opacity 300ms ease;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.at-repeat-fly-reverse-out.ng-leave {
+    opacity: 1;
+}
+
+.at-repeat-fly-reverse-out.ng-leave-active {
+    -webkit-transform: rotateX(-180deg);
+    -moz-transform: rotateX(-180deg);
+    -ms-transform: rotateX(-180deg);
+    -o-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
+    opacity: 0;
+}
+
+.at-repeat-fly-reverse-in.ng-enter {
+    -webkit-transform: rotateX(180deg);
+    -moz-transform: rotateX(180deg);
+    -ms-transform: rotateX(180deg);
+    -o-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+    opacity: 0;
+}
+
+.at-repeat-fly-reverse-in.ng-enter-active {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    -o-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    opacity: 1;
+}

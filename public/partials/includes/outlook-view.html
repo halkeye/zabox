@@ -5,7 +5,7 @@
       <div ng-hide="messages.length">No messages</div>
       <table class="table table-hover">
         <tbody>
-            <tr ng-repeat="message in messages | filter:query | orderBy:sortTimestamp:true" class="fade" ng-click="setMessage(message.id)">
+            <tr ng-repeat="message in messages | filter:query | orderBy:sortTimestamp:true" class="at-repeat-fly-reverse-in at-repeat-fly-reverse-out" ng-click="setMessage(message.id)">
               <td>{{ message.subject }}</td>
               <td>From: {{ message.from }}</td>
               <td><i><span class="pull-right" am-time-ago="message.timestamp"></span></i></td>
