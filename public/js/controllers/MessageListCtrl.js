@@ -36,4 +36,10 @@ zabox.controller('MessageListCtrl', ['$scope', '$routeParams', 'Message', 'favic
       }
     });
   };
+
+  $scope.refreshMessages = function () {
+    $scope.messages = Message.query(function (data) {
+      faviconService.badge(data.length);
+    });
+  };
 }]);
