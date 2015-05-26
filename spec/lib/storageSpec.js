@@ -60,6 +60,21 @@ describe('testing storage engines', function() {
           cb();
         });
       });
+      it('delete specific message', function(cb) {
+        var storage = new storageEngines[engine]({ messageLimit: 5});
+        expect(storage).not.toBe(null);
+        var message = {id: 'abc-723-456-7', body: { plain: "foo7" }, timestamp: "2007-03-01T13:00:00Z", from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah']};
+        storage.store(message);
+
+        storage.delete(message.id).done(function(result) {
+          expect(true).toEqual(result);
+          storage.all().done(function(results) {
+            var arr = results.filter(function(msg) { return msg.id === message.id; });
+            expect(arr).toEqual([]);
+          });
+          cb();
+        });
+      });
       it('get missing message', function(cb) {
         var storage = new storageEngines[engine]({ messageLimit: 5});
         expect(storage).not.toBe(null);

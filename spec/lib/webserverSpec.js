@@ -52,6 +52,20 @@ describe('WebServer', function() {
     });
   });
 
+  describe('DELETE /api/json/messages/b5c89620-665f-42b5-a431-42327d3bff6a', function(){
+    var id = 'b5c89620-665f-42b5-a431-42327d3bff6a';
+    it('returns json api', function(done){
+      request(this.webserver.getApp())
+        .delete('/api/json/messages/' + id)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end(function(err, res) {
+          if (err) { return done.fail(err); }
+          var arr = this.storage.messages.filter(function(message) { return message.id === id; });
+          expect(arr).toEqual([]);
+          done();
+        }.bind(this));
     });
   });
 
