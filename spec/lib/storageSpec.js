@@ -1,8 +1,9 @@
+/*globals require: false, describe: false, beforeEach: false, it: false, expect: false */
 var fs = require('fs');
 
 describe('testing storage engines', function() {
   var storageEngines = require('../../lib/storage').allStorages();
-  it ('allStorages should contain all storages', function() {
+  it('allStorages should contain all storages', function() {
     expect(Object.keys(storageEngines).sort()).toEqual(['memory', 'sqlite', 'test']);
   });
 
@@ -40,7 +41,7 @@ describe('testing storage engines', function() {
 
         storage.all().done(function(results) {
           expect(results.length).toBe(5);
-          [5,4,3,2,1].forEach(function(idx) {
+          [5, 4, 3, 2, 1].forEach(function(idx) {
             var actual = results[results.length-(idx-1)];
             var expected = messages[messages.length-(idx-1)];
             expect(actual).toEqual(expected);
@@ -70,7 +71,7 @@ describe('testing storage engines', function() {
 
   describe('Memory engine', function() {
     it('should expose settings', function() {
-      var storage = new storageEngines['memory']();
+      var storage = new storageEngines.memory(); // eslint-disable-line new-cap
       var settings = storage.settings();
       expect(settings).toEqual({ messageLimit: 100 });
     });
@@ -78,7 +79,7 @@ describe('testing storage engines', function() {
 
   describe('Test engine', function() {
     it('should expose settings', function() {
-      var storage = new storageEngines['test']();
+      var storage = new storageEngines.test(); // eslint-disable-line new-cap
       var settings = storage.settings();
       expect(settings).toEqual({ messageLimit: 100 });
     });
@@ -86,7 +87,7 @@ describe('testing storage engines', function() {
 
   describe('Sqlite engine', function() {
     it('should expose settings', function() {
-      var storage = new storageEngines['sqlite']();
+      var storage = new storageEngines.sqlite(); // eslint-disable-line new-cap
       var settings = storage.settings();
       expect(settings).toEqual({ messageLimit: false, filename: ':memory:' });
     });
