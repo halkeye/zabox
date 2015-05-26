@@ -69,6 +69,21 @@ describe('WebServer', function() {
     });
   });
 
+  describe('DELETE /api/json/messages/', function(){
+    it('returns json api', function(done){
+      request(this.webserver.getApp())
+        .delete('/api/json/messages/')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end(function(err, res) {
+          if (err) { return done.fail(err); }
+          expect(this.storage.messages).toEqual([]);
+          done();
+        }.bind(this));
+    });
+  });
+
   describe('GET /api/json/messages/badbadbad', function(){
     it('doesnt returns json api', function(done){
       request(this.webserver.getApp())
