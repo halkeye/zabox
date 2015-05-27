@@ -1,9 +1,10 @@
-/*globals require: false, describe: false, beforeEach: false, it: false, expect: false */
+/*globals require: false, describe: false, beforeEach: false, afterEach: false, it: false, expect: false */
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
-var SmtpServer = require(__dirname + '/../../lib/smtp');
-var Storage = require(__dirname + '/../../lib/storage/memory');
+var path = require('path');
+var SmtpServer = require(path.join(__dirname, '/../../lib/smtp'));
+var Storage = require(path.join(__dirname, '/../../lib/storage/memory'));
 
 
 describe('SmtpServer', function() {
@@ -15,9 +16,7 @@ describe('SmtpServer', function() {
       // Create a SMTP transport object
       self.transport = nodemailer.createTransport(smtpTransport({
         port: self.smtpServer.server.server.address().port,
-        tls:  {
-             rejectUnauthorized: false
-        },
+        tls: { rejectUnauthorized: false },
         secure: false,
         host: 'localhost'
       }));
@@ -48,7 +47,7 @@ describe('SmtpServer', function() {
       self.storage.get('_my-random-message-id_example_com_').then(function(message) {
         expect(message).not.toBeNull();
         var raw = message.raw.join('').split(/\n|\r/).filter(function(line) {
-          return !line.match(/^Date:/)
+          return !line.match(/^Date:/);
         });
         expect(raw).toEqual([
           'Content-Type: text/plain',
@@ -85,7 +84,7 @@ describe('SmtpServer', function() {
   });
   it('Has working text body', function(cb) {
     var self = this;
-    var message = {
+    var smtpMessage = {
       xMailer: 'xmailer-test-string',
       messageId: "my-random-message-id@example.com",
       // sender info
@@ -96,10 +95,11 @@ describe('SmtpServer', function() {
       subject: 'My Test Subject ✔', //
       headers: { 'X-Laziness-level': 1000 },
       // plaintext body
-      text: 'Hello to myself!\nFrom myself',
+      text: 'Hello to myself!\nFrom myself'
     };
 
-    self.transport.sendMail(message, function(err) {
+    self.transport.sendMail(smtpMessage, function(err) {
+      if (err) { throw err; }
       self.transport.close();
       self.storage.get('_my-random-message-id_example_com_').then(function(message) {
         expect(message).not.toBeNull();
