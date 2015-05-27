@@ -1,3 +1,4 @@
+/*globals require: false, describe: false, beforeEach: false, it: false, expect: false */
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
@@ -30,6 +31,7 @@ describe('SmtpServer', function() {
   it('Has Working Raw', function(cb) {
     var self = this;
     var message = {
+      xMailer: 'xmailer-test-string',
       messageId: "my-random-message-id@example.com",
       // sender info
       from: 'Sender Name <sender@example.com>',
@@ -61,9 +63,7 @@ describe('SmtpServer', function() {
           '',
           'X-Laziness-Level: 1000',
           '',
-          'X-Mailer: nodemailer (1.3.4; +http://www.nodemailer.com;',
-          '',
-          ' SMTP/1.0.2[client:1.2.0])',
+          'X-Mailer: xmailer-test-string',
           '',
           'Content-Transfer-Encoding: 7bit',
           '',
@@ -86,6 +86,7 @@ describe('SmtpServer', function() {
   it('Has working text body', function(cb) {
     var self = this;
     var message = {
+      xMailer: 'xmailer-test-string',
       messageId: "my-random-message-id@example.com",
       // sender info
       from: 'Sender Name <sender@example.com>',
