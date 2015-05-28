@@ -58,7 +58,7 @@ zabox.controller('MessageListCtrl', ['$scope', '$routeParams', 'Message', 'favic
   $scope.deleteAllMessages = function () {
     Message.delete(function (data) {
       $scope.messages = [];
-      faviconService.badge(data.length);
+      faviconService.badge(0);
     });
   };
 }]);
