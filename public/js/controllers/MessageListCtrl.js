@@ -42,4 +42,23 @@ zabox.controller('MessageListCtrl', ['$scope', '$routeParams', 'Message', 'favic
       faviconService.badge(data.length);
     });
   };
+
+  $scope.confirmDeleteAllMessages = function () {
+    var result = ngDialog.openConfirm({
+        template: 'partials/delete-confirm.html',
+        className: 'ngdialog-theme-default',
+        showClose: false
+    });
+    // user confirms
+    result.then(function () {
+      $scope.deleteAllMessages();
+    });
+  };
+
+  $scope.deleteAllMessages = function () {
+    Message.delete(function (data) {
+      $scope.messages = [];
+      faviconService.badge(data.length);
+    });
+  };
 }]);

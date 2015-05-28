@@ -25,4 +25,15 @@ describe( 'Message List Controller', function() {
         [exampleMsg]);
   });
 
+  it( 'should delete messages', function() {
+    $httpBackend.expectGET('api/json/messages').
+        respond([exampleMsg]);
+    $httpBackend.flush();
+    $httpBackend.expectDELETE('api/json/messages').
+        respond(200, '');
+    scope.deleteAllMessages();
+    $httpBackend.flush();
+    expect(scope.messages).toEqualData([]);
+  });
+
 });
