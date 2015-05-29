@@ -1,4 +1,4 @@
 <button class="btn btn-primary" ng-click="refreshMessages()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
 <button class="btn btn-primary" ng-click="confirmDeleteAllMessages()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-<button type="button" class="btn btn-primary navbar-btn" ng-click="toggleView()">Switch to list view</button>
+<button type="button" class="btn btn-primary navbar-btn" ng-click="toggleView()">Switch to <span ng-hide="outlookView">outlook</span><span ng-show="outlookView">list</span> view</button>
 <button type="button" class="btn btn-primary navbar-btn" ng-click="showSettings()">About</button>
