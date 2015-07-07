@@ -1,5 +1,7 @@
 # zabox [![Build Status](https://travis-ci.org/halkeye/zabox.svg?branch=master)](https://travis-ci.org/halkeye/zabox) [![Dependency Status](https://gemnasium.com/halkeye/zabox.svg)](https://gemnasium.com/halkeye/zabox) [![codecov.io](https://codecov.io/github/halkeye/zabox/coverage.svg?branch=master)](https://codecov.io/github/halkeye/zabox?branch=master)
 
+[![Join the chat at https://gitter.im/halkeye/zabox](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/halkeye/zabox?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Web API
 =======
 
