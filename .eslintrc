@@ -1,0 +1,10 @@
+{
+  "extends": [ "semistandard", "eslint:recommended" ],
+  "rules": {
+    "no-console": 0
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  }
+}
