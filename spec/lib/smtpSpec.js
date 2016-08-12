@@ -47,35 +47,24 @@ describe('SmtpServer', function() {
       self.storage.get('_my-random-message-id_example_com_').then(function(message) {
         expect(message).not.toBeNull();
         var raw = message.raw.join('').split(/\n|\r/).filter(function(line) {
-          return !line.match(/^Date:/);
+          return !line.match(/^Date:/) && line.length > 0;
         });
-        expect(raw).toEqual([
+        var response = [
           'Content-Type: text/plain',
-          '',
-          'From: Sender Name <sender@example.com>',
-          '',
-          'To: Receiver Name <nodemailer@disposebox.com>',
-          '',
-          'Subject: My Test Subject =?UTF-8?Q?=E2=9C=94?=',
-          '',
-          'Message-Id: <my-random-message-id@example.com>',
-          '',
           'X-Laziness-Level: 1000',
-          '',
+          'From: Sender Name <sender@example.com>',
+          'To: Receiver Name <nodemailer@disposebox.com>',
+          'Subject: My Test Subject =?UTF-8?Q?=E2=9C=94?=',
+          'Message-ID: <my-random-message-id@example.com>',
           'X-Mailer: xmailer-test-string',
-          '',
           'Content-Transfer-Encoding: 7bit',
-          '',
-          //'Date: Sat, 25 Apr 2015 02:32:30 +0000',
-          '',
           'MIME-Version: 1.0',
-          '',
-          '',
-          '',
           'Hello to myself!',
-          '',
           'From myself'
-        ]);
+        ];
+        response.sort();
+        raw.sort();
+        expect(raw).toEqual(response);
         cb();
       });
       self.transport.close();
@@ -95,7 +84,7 @@ describe('SmtpServer', function() {
       subject: 'My Test Subject ✔', //
       headers: { 'X-Laziness-level': 1000 },
       // plaintext body
-      text: 'Hello to myself!\nFrom myself'
+      text: 'Hello to myself!\nFrom myself\n'
     };
 
     self.transport.sendMail(smtpMessage, function(err) {
@@ -103,7 +92,7 @@ describe('SmtpServer', function() {
       self.transport.close();
       self.storage.get('_my-random-message-id_example_com_').then(function(message) {
         expect(message).not.toBeNull();
-        expect(message.body.plain).toEqual('Hello to myself!\nFrom myself');
+        expect(message.body.plain).toEqual('Hello to myself!\nFrom myself\n');
         cb();
       });
     });
