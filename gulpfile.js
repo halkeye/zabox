@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var debug = require('gulp-debug');
 var jasmine = require('gulp-jasmine');
-var karma = require('gulp-karma');
+var Server = require('karma').Server;
 var plumber = require('gulp-plumber');
 var istanbul = require('gulp-istanbul');
 
@@ -39,19 +39,15 @@ gulp.task('jasmine-codecov', function(cb) {
     });
 });
 
-gulp.task('karma', function() {
+gulp.task('test', function() {
   // Be sure to return the stream
   // NOTE: Using the fake './foobar' so as to run the files
   // listed in karma.conf.js INSTEAD of what was passed to
   // gulp.src !
-  return gulp.src('./foobar')
-    .pipe(plumber())
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }))
-    .on('error', function(err) { throw err; });
+  new Server({
+    configFile: __dirname + '/karma.conf.js'
+  }, done).start();
 });
 
 gulp.task('test', ['jasmine'], function() {});
-gulp.task('travis', ['jasmine-codecov','karma'], function() {});
+gulp.task('travis', ['jasmine-codecov','test'], function() {});

@@ -44,7 +44,6 @@
     "gulp-debug": "^2.0.1",
     "gulp-istanbul": "^1.0.0",
     "gulp-jasmine": "^2.0.1",
-    "gulp-karma": "0.0.5",
     "gulp-plumber": "^1.0.0",
     "jasmine": "^2.2.1",
     "jasmine-core": "^2.2.0",
