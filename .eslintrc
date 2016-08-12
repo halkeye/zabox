@@ -1,5 +1,5 @@
 {
-  "extends": [ "semistandard", "eslint:recommended" ],
+  "extends": [ "eslint:recommended", "semistandard" ],
   "rules": {
     "no-console": 0
   },
