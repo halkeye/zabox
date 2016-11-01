@@ -4,7 +4,7 @@
   "description": "An email test application to act as an SMTP server and store caught messages",
   "main": "index.js",
   "engines": {
-    "node": ">=0.10"
+    "node": ">= 4"
   },
   "scripts": {
     "test": "gulp test",
