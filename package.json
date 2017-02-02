@@ -31,7 +31,7 @@
     "express": "^4.12.3",
     "less-middleware": "^2.0.1",
     "lodash": "^4.14.2",
-    "mailparser": "^0.6.1",
+    "mailparser": "^2.0.0",
     "node-uuid": "^1.4.3",
     "promise": "^7.0.0",
     "serve-static": "^1.9.2",
