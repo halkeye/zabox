@@ -35,7 +35,7 @@
     "node-uuid": "^1.4.3",
     "promise": "^7.0.0",
     "serve-static": "^1.9.2",
-    "smtp-server": "^1.2.0",
+    "smtp-server": "^2.0.0",
     "sqlite3": "^3.0.5"
   },
   "devDependencies": {
