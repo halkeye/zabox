@@ -59,7 +59,7 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.1",
-    "karma-spec-reporter": "0.0.26",
+    "karma-spec-reporter": "0.0.28",
     "nodemailer": "^3.0.0",
     "nodemailer-smtp-transport": "^2.6.0",
     "phantomjs": "^2.1.7",
