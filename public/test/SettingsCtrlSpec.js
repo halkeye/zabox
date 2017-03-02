@@ -1,25 +1,23 @@
 'use strict';
 
-describe( 'Settings Controller', function() {
-  var scope, ctrl, $httpBackend, location;
+describe('Settings Controller', function () {
+  var scope, $httpBackend;
 
-  beforeEach(function() {
-      inject(function(_$httpBackend_, _$location_, $rootScope, $controller) {
-        $httpBackend = _$httpBackend_;
-        location = _$location_;
-        scope = $rootScope.$new();
+  beforeEach(function () {
+    inject(function (_$httpBackend_, $rootScope, $controller) {
+      $httpBackend = _$httpBackend_;
+      scope = $rootScope.$new();
 
-        var ctrl_data = {
-          $scope: scope,
-        };
+      var ctrlData = {
+        $scope: scope
+      };
 
-        ctrl = $controller('SettingsCtrl', ctrl_data);
-      });
+      $controller('SettingsCtrl', ctrlData);
+    });
   });
 
-  it( 'should get "smtp_settings" using xhr', function() {
+  it('should get "smtp_settings" using xhr', function () {
     $httpBackend.expectGET('api/json/smtp_settings').respond({ messageLimit: false });
     $httpBackend.flush();
   });
-
 });

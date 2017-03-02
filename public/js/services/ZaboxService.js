@@ -1,10 +1,10 @@
 'use strict';
 
 zaboxServices.factory('ZaboxService', [
-function() {
+  function () {
     var outlookView = true;
 
     return {
-        outlookView : outlookView
+      outlookView: outlookView
     };
-}]);
+  }]);

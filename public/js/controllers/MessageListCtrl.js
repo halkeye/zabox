@@ -1,7 +1,6 @@
 'use strict';
 
 zabox.controller('MessageListCtrl', ['$scope', '$routeParams', 'Message', 'faviconService', 'ngDialog', 'ZaboxService', function ($scope, $routeParams, Message, faviconService, ngDialog, ZaboxService) {
-
   $scope.outlookView = ZaboxService.outlookView;
   $scope.query = '';
 
@@ -9,7 +8,7 @@ zabox.controller('MessageListCtrl', ['$scope', '$routeParams', 'Message', 'favic
     faviconService.badge(data.length);
   });
 
-  $scope.sortTimestamp = function(message) {
+  $scope.sortTimestamp = function (message) {
     var date = new Date(message.timestamp);
     return date;
   };
@@ -21,9 +20,9 @@ zabox.controller('MessageListCtrl', ['$scope', '$routeParams', 'Message', 'favic
 
   $scope.showSettings = function () {
     ngDialog.open({
-        template: 'partials/settings.html',
-        className: 'ngdialog-theme-default',
-        controller: 'SettingsCtrl'
+      template: 'partials/settings.html',
+      className: 'ngdialog-theme-default',
+      controller: 'SettingsCtrl'
     });
   };
 
@@ -45,9 +44,9 @@ zabox.controller('MessageListCtrl', ['$scope', '$routeParams', 'Message', 'favic
 
   $scope.confirmDeleteAllMessages = function () {
     var result = ngDialog.openConfirm({
-        template: 'partials/delete-confirm.html',
-        className: 'ngdialog-theme-default',
-        showClose: false
+      template: 'partials/delete-confirm.html',
+      className: 'ngdialog-theme-default',
+      showClose: false
     });
     // user confirms
     result.then(function () {

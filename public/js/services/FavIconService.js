@@ -1,20 +1,20 @@
 'use strict';
 
 zaboxServices.factory('faviconService', [
-function() {
-    var favico = new Favico({
-        animation : 'fade'
+  function () {
+    var favico = new window.Favico({
+      animation: 'fade'
     });
 
-    var badge = function(num) {
-        favico.badge(num);
+    var badge = function (num) {
+      favico.badge(num);
     };
-    var reset = function() {
-        favico.reset();
+    var reset = function () {
+      favico.reset();
     };
 
     return {
-        badge : badge,
-        reset : reset
+      badge: badge,
+      reset: reset
     };
-}]);
+  }]);

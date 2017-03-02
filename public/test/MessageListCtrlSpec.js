@@ -1,39 +1,37 @@
 'use strict';
 
-describe( 'Message List Controller', function() {
-  var scope, ctrl, $httpBackend, location;
+describe('Message List Controller', function () {
+  var scope, $httpBackend;
 
-  beforeEach(function() {
-      inject(function(_$httpBackend_, _$location_, $rootScope, $controller) {
-        $httpBackend = _$httpBackend_;
-        location = _$location_;
-        scope = $rootScope.$new();
+  beforeEach(function () {
+    inject(function (_$httpBackend_, $rootScope, $controller) {
+      $httpBackend = _$httpBackend_;
+      scope = $rootScope.$new();
 
-        var ctrl_data = {
-          $scope: scope,
-        };
+      var ctrlData = {
+        $scope: scope
+      };
 
-        ctrl = $controller('MessageListCtrl', ctrl_data);
-      });
+      $controller('MessageListCtrl', ctrlData);
+    });
   });
 
-  it( 'should get "messages" using xhr', function() {
-    $httpBackend.expectGET('api/json/messages').
-        respond([exampleMsg]);
+  it('should get "messages" using xhr', function () {
+    $httpBackend.expectGET('api/json/messages')
+        .respond([window.exampleMsg]);
     $httpBackend.flush();
     expect(scope.messages).toEqualData(
-        [exampleMsg]);
+        [window.exampleMsg]);
   });
 
-  it( 'should delete messages', function() {
-    $httpBackend.expectGET('api/json/messages').
-        respond([exampleMsg]);
+  it('should delete messages', function () {
+    $httpBackend.expectGET('api/json/messages')
+        .respond([window.exampleMsg]);
     $httpBackend.flush();
-    $httpBackend.expectDELETE('api/json/messages').
-        respond(200, '');
+    $httpBackend.expectDELETE('api/json/messages')
+        .respond(200, '');
     scope.deleteAllMessages();
     $httpBackend.flush();
     expect(scope.messages).toEqualData([]);
   });
-
 });

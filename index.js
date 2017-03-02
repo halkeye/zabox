@@ -1,21 +1,20 @@
 'use strict';
+var path = require('path');
 var program = require('commander');
 var Storage = require('./lib/storage');
 
 program
-  .version(require(__dirname + '/package.json').version)
-  .description(require(__dirname + '/package.json').description)
+  .version(require(path.join(__dirname, '/package.json')).version)
+  .description(require(path.join(__dirname, '/package.json')).description)
   .option('-w, --webport <n>', 'Web Port', parseInt)
   .option('-s, --smtpport <n>', 'SMTP Port', parseInt)
   .option('--list-storages', 'List all available storages')
   .option('--storage <storage>', 'Storage Mode [test,memory,sqlite]', /^(test|memory|sqlite)$/, 'memory')
   .parse(process.argv);
 
-
 var allStorages = Storage.allStorages();
-if (program.listStorages)
-{
-  Object.keys(allStorages).forEach(function(name) {
+if (program.listStorages) {
+  Object.keys(allStorages).forEach(function (name) {
     console.log(' - ' + name);
     console.log('   * ' + allStorages[name].description);
   });
@@ -32,5 +31,5 @@ var smtpPort = program.smtpport || webPort + 1;
 var webserver = new WebServer(webPort, storage);
 webserver.run();
 
-var smtpServer = new SmtpServer(smtpPort , null, storage);
+var smtpServer = new SmtpServer(smtpPort, null, storage);
 smtpServer.run();

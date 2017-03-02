@@ -1,14 +1,14 @@
 'use strict';
 
-beforeEach(function(){
+beforeEach(function () {
   jasmine.addMatchers({
-    toEqualData: function() {
+    toEqualData: function () {
       return {
-          compare: function (actual, expected) {
-              return {
-                pass: angular.equals(actual, expected)
-              };
-          }
+        compare: function (actual, expected) {
+          return {
+            pass: angular.equals(actual, expected)
+          };
+        }
       };
     }
   });
