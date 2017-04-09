@@ -63,7 +63,7 @@
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-spec-reporter": "0.0.30",
     "nodemailer": "^4.0.0",
-    "nodemailer-smtp-transport": "^2.6.0",
+    "nodemailer-smtp-transport": "^2.7.4",
     "phantomjs": "^2.1.7",
     "supertest": "^3.0.0"
   }
