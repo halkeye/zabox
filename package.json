@@ -9,7 +9,8 @@
   "scripts": {
     "test": "eslint . && gulp test",
     "start": "node index.js",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -35,16 +36,17 @@
     "node-uuid": "^1.4.3",
     "promise": "^7.0.0",
     "serve-static": "^1.9.2",
-    "smtp-server": "^2.0.1",
+    "smtp-server": "^3.0.0",
     "sqlite3": "^3.0.5"
   },
   "devDependencies": {
     "codecov.io": "^0.1.0",
     "eslint": "^3.2.2",
-    "eslint-config-semistandard": "^7.0.0-beta.0",
-    "eslint-config-standard": "^7.0.0",
+    "eslint-config-standard": "^10.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.0.0",
-    "eslint-plugin-standard": "^2.0.0",
+    "eslint-plugin-standard": "^3.0.1",
     "gulp": "^3.8.11",
     "gulp-debug": "^3.0.0",
     "gulp-istanbul": "^1.0.0",
@@ -59,9 +61,9 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.1",
-    "karma-spec-reporter": "0.0.30",
-    "nodemailer": "^3.0.0",
-    "nodemailer-smtp-transport": "^2.6.0",
+    "karma-spec-reporter": "0.0.31",
+    "nodemailer": "^4.0.0",
+    "nodemailer-smtp-transport": "^2.7.4",
     "phantomjs": "^2.1.7",
     "supertest": "^3.0.0"
   }
