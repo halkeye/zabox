@@ -8,8 +8,8 @@ before_script:
 script:
   - npm run travis
 after_success:
-  - cat ./coverage/backend/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
-  - cat ./coverage/frontend/*/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
+  - npm run coverage
+  - cat ./coverage/frontend/*/lcov.info | ./node_modules/.bin/codacy-coverage
 env:
   global:
     secure: H18QvyombBlcorWehEVuM4jpx+3SlWJA+8eGN4QMpUzatWIfgdm/Jw75KaGUi3p01fvGF8+bZQQcwZ8ri6hBehFdLEGhm2Blw1dUjENhHIsvHaeW1DNzjP6R7JtKX77MsNzt8C9S+QLdnWrkYpERWcwIpZ2LBw/K7bMCq0s65U4=
