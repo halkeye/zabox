@@ -7,8 +7,8 @@
     "node": ">= 6"
   },
   "scripts": {
-    "test": "nyc mocha spec/lib/*Spec.js",
-    "travis": "npm run lint && npm run test && npm run karma",
+    "test": "mocha spec/lib/*Spec.js",
+    "travis": "npm run lint && nyc --reporter=lcov --reporter=text-lcov npm run test && mkdir coverage/backend && mv coverage/* coverage/backend/; npm run karma",
     "karma": "karma start karma.conf.js --single-run",
     "start": "node index.js",
     "postinstall": "bower install",
