@@ -18,7 +18,7 @@ if (program.listStorages) {
     console.log(' - ' + name);
     console.log('   * ' + allStorages[name].description);
   });
-  process.exit();
+  process.exit(); // eslint-disable-line no-process-exit
 }
 
 var storage = new allStorages[program.storage]();
