@@ -1,15 +1,16 @@
 sudo: false
 language: node_js
 node_js:
-  - node
-  - 6
+- node
+- 6
 before_script:
-  - npm run postinstall
+- npm run postinstall
 script:
-  - npm run travis
+- npm run travis
 after_success:
-  - npm run coverage
-  - cat ./coverage/frontend/*/lcov.info | ./node_modules/.bin/codacy-coverage
+- npm run coverage
+- cat ./coverage/frontend/*/lcov.info | ./node_modules/.bin/codacy-coverage
 env:
   global:
-    secure: H18QvyombBlcorWehEVuM4jpx+3SlWJA+8eGN4QMpUzatWIfgdm/Jw75KaGUi3p01fvGF8+bZQQcwZ8ri6hBehFdLEGhm2Blw1dUjENhHIsvHaeW1DNzjP6R7JtKX77MsNzt8C9S+QLdnWrkYpERWcwIpZ2LBw/K7bMCq0s65U4=
+  - secure: H18QvyombBlcorWehEVuM4jpx+3SlWJA+8eGN4QMpUzatWIfgdm/Jw75KaGUi3p01fvGF8+bZQQcwZ8ri6hBehFdLEGhm2Blw1dUjENhHIsvHaeW1DNzjP6R7JtKX77MsNzt8C9S+QLdnWrkYpERWcwIpZ2LBw/K7bMCq0s65U4=
+  - secure: GxEeFb/8qOF//uQEJvFsQZrGn2NdX4fkDt9zypp3elNPd3f4xobytmWpU4Q6kKQbUvxzyZ6L7K2S9WIhDDF+4+WaVORDHGPe7QzBMBVMlY8jTHT73OOxC7gIcCxLTXeqEnvcuCrbMJmZphSRN9wYaS+X/Fy0jLHiB7fpFQsO1Ns=
