@@ -1,29 +1,30 @@
 /* globals require: false, describe: false, beforeEach: false, it: false, expect: false */
+require('should');
 describe('testing storage engines', function () {
   var storageEngines = require('../../lib/storage').allStorages();
   it('allStorages should contain all storages', function () {
-    expect(Object.keys(storageEngines).sort()).toEqual(['memory', 'sqlite', 'test']);
+    Object.keys(storageEngines).sort().should.eql(['memory', 'sqlite', 'test']);
   });
 
   Object.keys(storageEngines).forEach(function (engine) {
     describe(engine + ' Follows basic specs', function () {
       it('blah', function () {
         var storage = new storageEngines[engine]();
-        expect(storage).not.toBe(null);
+        storage.should.be.ok();
       });
       it('has description', function () {
-        expect(storageEngines[engine].description).toBeDefined();
-        expect(storageEngines[engine].description).not.toBe(null);
+        storageEngines[engine].description.should.be.ok();
+        storageEngines[engine].description.should.not.be.empty();
       });
       it('overriding options works', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
-        expect(storage).not.toBe(null);
+        storage.should.be.ok();
         var settings = storage.settings();
-        expect(settings.messageLimit).toEqual(5);
+        settings.messageLimit.should.eql(5);
       });
-      it('messages over limit get trimmed', function (cb) {
+      it('messages over limit get trimmed', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
-        expect(storage).not.toBe(null);
+        storage.should.be.ok();
         var messages = [
           {id: 'abc-123-456-1', body: { plain: 'foo1' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
           {id: 'abc-123-456-2', body: { plain: 'foo2' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
@@ -33,65 +34,57 @@ describe('testing storage engines', function () {
           {id: 'abc-123-456-6', body: { plain: 'foo6' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', to: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com']},
           {id: 'abc-123-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['Head: 1']}
         ];
-        messages.forEach(function (message) {
-          storage.store(message);
-        });
-
-        storage.all().done(function (results) {
-          expect(results.length).toBe(5);
-          [5, 4, 3, 2, 1].forEach(function (idx) {
-            var actual = results[results.length - (idx - 1)];
-            var expected = messages[messages.length - (idx - 1)];
-            expect(actual).toEqual(expected);
-          });
-          cb();
+        return Promise.all(
+          messages.map(function (message) { return storage.store(message); })
+        ).then(function () {
+          return storage.all();
+        }).then(function (results) {
+          results.length.should.eql(5);
+          results.slice(-5).should.eql(messages.slice(-5));
         });
       });
-      it('get specific message', function (cb) {
+      it('get specific message', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
-        expect(storage).not.toBe(null);
+        storage.should.be.ok();
         var message = {id: 'abc-723-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah']};
-        storage.store(message);
-
-        storage.get(message.id).done(function (result) {
-          expect(message).toEqual(result);
-          cb();
-        });
+        return storage.store(message)
+          .then(function () { return storage.get(message.id); })
+          .then(function (result) { message.should.eql(result); });
       });
-      it('delete specific message', function (cb) {
+      it('delete specific message', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
-        expect(storage).not.toBe(null);
+        storage.should.be.ok();
         var message = {id: 'abc-723-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah']};
-        storage.store(message);
-
-        storage.delete(message.id).done(function (result) {
-          expect(true).toEqual(result);
-          storage.all().done(function (results) {
+        return storage.store(message)
+          .then(function () { return storage.delete(message.id); })
+          .then(function (deleteResult) { deleteResult.should.eql(true); })
+          .then(function () { return storage.all(); })
+          .then(function (results) {
             var arr = results.filter(function (msg) { return msg.id === message.id; });
-            expect(arr).toEqual([]);
+            arr.should.eql([]);
           });
-          cb();
-        });
       });
-      it('delete all messages', function (cb) {
+      it('delete all messages', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
-        expect(storage).not.toBe(null);
+        storage.should.be.ok();
         var message = {id: 'abc-723-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah']};
-        storage.store(message);
-
-        storage.deleteAll().done(function (result) {
-          expect(true).toEqual(result);
-          storage.all().done(function (results) {
-            expect(results).toEqual([]);
-          });
-          cb();
+        storage.store(message)
+        .then(function () { return storage.deleteAll(); })
+        .then(function (deleteResult) { deleteResult.should.eql(true); })
+        .then(function () { return storage.all(); })
+        .then(function (results) {
+          results.should.eql([]);
         });
       });
-      it('get missing message', function (cb) {
+      it('get missing message', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
-        expect(storage).not.toBe(null);
+        storage.should.be.ok();
 
-        storage.get('asd0891o3iewqdsai').then(cb.fail, cb);
+        return storage.get('asd0891o3iewqdsai')
+          .then(
+            function () { throw new Error('Shouldnt find a result'); },
+            function (err) { err.should.be.ok(); }
+          );
       });
     });
   });
@@ -100,7 +93,7 @@ describe('testing storage engines', function () {
     it('should expose settings', function () {
       var storage = new storageEngines.memory(); // eslint-disable-line new-cap
       var settings = storage.settings();
-      expect(settings).toEqual({ messageLimit: 100 });
+      settings.should.eql({ messageLimit: 100 });
     });
   });
 
@@ -108,7 +101,7 @@ describe('testing storage engines', function () {
     it('should expose settings', function () {
       var storage = new storageEngines.test(); // eslint-disable-line new-cap
       var settings = storage.settings();
-      expect(settings).toEqual({ messageLimit: 100 });
+      settings.should.eql({ messageLimit: 100 });
     });
   });
 
@@ -116,7 +109,7 @@ describe('testing storage engines', function () {
     it('should expose settings', function () {
       var storage = new storageEngines.sqlite(); // eslint-disable-line new-cap
       var settings = storage.settings();
-      expect(settings).toEqual({ messageLimit: false, filename: ':memory:' });
+      settings.should.eql({ messageLimit: false, filename: ':memory:' });
     });
   });
 });
