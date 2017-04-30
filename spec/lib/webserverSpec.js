@@ -1,4 +1,5 @@
 /* globals require: false, describe: false, beforeEach: false, it: false, expect: false */
+require('should');
 var request = require('supertest');
 
 var path = require('path');
@@ -62,7 +63,7 @@ describe('WebServer', function () {
         .end(function (err, res) {
           if (err) { return done.fail(err); }
           var arr = this.storage.messages.filter(function (message) { return message.id === id; });
-          expect(arr).toEqual([]);
+          arr.should.eql([]);
           done();
         }.bind(this));
     });
@@ -77,7 +78,7 @@ describe('WebServer', function () {
         .expect(200)
         .end(function (err, res) {
           if (err) { return done.fail(err); }
-          expect(this.storage.messages).toEqual([]);
+          this.storage.messages.should.eql([]);
           done();
         }.bind(this));
     });

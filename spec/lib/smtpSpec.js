@@ -1,28 +1,36 @@
-/* eslint-env: jasmine */
+/* eslint-env: jasmine, mocha */
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
 var path = require('path');
+require('should');
+
 var SmtpServer = require(path.join(__dirname, '/../../lib/smtp'));
 var Storage = require(path.join(__dirname, '/../../lib/storage/memory'));
 
-var setupSMTP = function (cb) {
-  var self = this;
-  self.storage = new Storage();
-  self.smtpServer = new SmtpServer(0, null, self.storage);
-  self.smtpServer.run(function () {
+var storage;
+var smtpServer;
+var transport;
+
+var setupSMTP = function (done) {
+  var logger = false;
+  storage = new Storage();
+  smtpServer = new SmtpServer(0, logger, storage);
+  smtpServer.run(function () {
     // Create a SMTP transport object
-    self.transport = nodemailer.createTransport(smtpTransport({
-      port: self.smtpServer.server.server.address().port,
+    transport = nodemailer.createTransport(smtpTransport({
+      logger: logger,
+      port: smtpServer.server.server.address().port,
       tls: { rejectUnauthorized: false },
       secure: false,
-      host: 'localhost'
+      host: '127.0.0.1'
     }));
-    cb();
+    done();
   });
 };
-var closeSMTP = function (cb) {
-  this.smtpServer.close(cb);
+
+var closeSMTP = function (done) {
+  smtpServer.close(done);
 };
 
 describe('SmtpServer', function () {
@@ -31,7 +39,6 @@ describe('SmtpServer', function () {
     afterEach(closeSMTP);
 
     it('Has Working Raw', function () {
-      var self = this;
       var message = {
         xMailer: 'xmailer-test-string',
         messageId: 'my-random-message-id@example.com',
@@ -45,11 +52,17 @@ describe('SmtpServer', function () {
         // plaintext body
         text: 'Hello to myself!\nFrom myself'
       };
-
-      return self.transport.sendMail(message).then(() => {
-        return self.storage.get('_my-random-message-id_example_com_').then(message => {
-          expect(message).not.toBeNull();
-          var raw = message.raw.join('').split(/\n|\r/).filter(line => {
+      return transport.sendMail(message)
+        .then(function () {
+          transport.close();
+          transport = null;
+        })
+        .then(function () {
+          return storage.get('_my-random-message-id_example_com_');
+        })
+        .then(function (messageResponse) {
+          messageResponse.should.be.ok();
+          var raw = messageResponse.raw.join('').split(/\n|\r/).filter(line => {
             return !line.match(/^Date:/) && line.length > 0;
           });
           var response = [
@@ -67,19 +80,15 @@ describe('SmtpServer', function () {
           ];
           response.sort();
           raw.sort();
-          expect(raw).toEqual(response);
+          raw.should.eql(response);
         });
-      }).then(() => {
-        self.transport.close();
-      });
     });
   });
   describe('', function () {
     beforeEach(setupSMTP);
     afterEach(closeSMTP);
     it('Has working text body', function () {
-      var self = this;
-      var smtpMessage = {
+      var message = {
         xMailer: 'xmailer-test-string',
         messageId: 'my-random-message-id@example.com',
         // sender info
@@ -92,15 +101,18 @@ describe('SmtpServer', function () {
         // plaintext body
         text: 'Hello to myself!\nFrom myself\n'
       };
-
-      return self.transport.sendMail(smtpMessage).then(function () {
-        return self.storage.get('_my-random-message-id_example_com_').then(function (message) {
-          expect(message).not.toBeNull();
-          expect(message.body.plain).toEqual('Hello to myself!\nFrom myself\n');
+      return transport.sendMail(message)
+        .then(function () {
+          transport.close();
+          transport = null;
+        })
+        .then(function () {
+          return storage.get('_my-random-message-id_example_com_');
+        })
+        .then(function (messageResponse) {
+          messageResponse.should.be.ok();
+          messageResponse.body.plain.should.eql('Hello to myself!\nFrom myself\n');
         });
-      }).then(function () {
-        self.transport.close();
-      });
     });
   });
 });

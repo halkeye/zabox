@@ -4,11 +4,9 @@ node_js:
   - node
   - 6
 before_script:
-  - npm install -g gulp
-  - npm install -g bower
-  - bower install
+  - npm run postinstall
 script:
-  - gulp travis
+  - npm run travis
 after_success:
   - cat ./coverage/backend/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
   - cat ./coverage/frontend/*/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
