@@ -34,10 +34,10 @@
     "less-middleware": "^2.0.1",
     "lodash": "^4.14.2",
     "mailparser": "^2.0.1",
-    "node-uuid": "^1.4.3",
     "serve-static": "^1.9.2",
     "smtp-server": "^3.0.0",
-    "sqlite3": "^3.0.5"
+    "sqlite3": "^3.0.5",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "bower": "^1.8.0",
@@ -56,13 +56,13 @@
     "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
-    "karma-phantomjs-launcher": "^1.0.1",
+    "karma-phantomjs-launcher": "^1.0.4",
     "karma-spec-reporter": "0.0.31",
     "mocha": "^3.3.0",
     "nodemailer": "^4.0.0",
     "nodemailer-smtp-transport": "^2.7.4",
     "nyc": "^10.3.0",
-    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.14",
     "should": "^11.2.1",
     "supertest": "^3.0.0"
   }
