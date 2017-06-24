@@ -30,3 +30,16 @@ bower_components
 *.css
 .nyc_output/
 coveragebackend/
+
+# dont need these for npm
+spec/
+.jshintrc
+.travis.yml
+.editorconfig
+.envrc
+.eslintignore
+.eslintrc.js
+.gitignore
+.jshintrc
+.npmignore
+.travis.yml
