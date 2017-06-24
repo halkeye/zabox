@@ -26,21 +26,21 @@ describe('Message Detail Controller', function () {
 
   it('should get "message" using xhr', function () {
     $httpBackend.expectGET('api/json/messages/a233f8d-djfk')
-        .respond(window.exampleMsg);
+      .respond(window.exampleMsg);
     $httpBackend.flush();
     expect(scope.message).toEqualData(window.exampleMsg);
   });
 
   it('should show "Plain" when HTML is undefined', function () {
     $httpBackend.expectGET('api/json/messages/a233f8d-djfk')
-        .respond(window.exampleMsg);
+      .respond(window.exampleMsg);
     $httpBackend.flush();
     expect(scope.showBody).toEqual('Plain');
   });
 
   it('should show not found when message does not exist', function () {
     $httpBackend.expectGET('api/json/messages/a233f8d-djfk')
-        .respond(404, '');
+      .respond(404, '');
     $httpBackend.flush();
     expect(location.url()).toEqual('/404');
   });

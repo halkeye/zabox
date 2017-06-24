@@ -18,18 +18,18 @@ describe('Message List Controller', function () {
 
   it('should get "messages" using xhr', function () {
     $httpBackend.expectGET('api/json/messages')
-        .respond([window.exampleMsg]);
+      .respond([window.exampleMsg]);
     $httpBackend.flush();
     expect(scope.messages).toEqualData(
-        [window.exampleMsg]);
+      [window.exampleMsg]);
   });
 
   it('should delete messages', function () {
     $httpBackend.expectGET('api/json/messages')
-        .respond([window.exampleMsg]);
+      .respond([window.exampleMsg]);
     $httpBackend.flush();
     $httpBackend.expectDELETE('api/json/messages')
-        .respond(200, '');
+      .respond(200, '');
     scope.deleteAllMessages();
     $httpBackend.flush();
     expect(scope.messages).toEqualData([]);

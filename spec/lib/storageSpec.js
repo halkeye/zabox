@@ -69,12 +69,12 @@ describe('testing storage engines', function () {
         storage.should.be.ok();
         var message = {id: 'abc-723-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah']};
         storage.store(message)
-        .then(function () { return storage.deleteAll(); })
-        .then(function (deleteResult) { deleteResult.should.eql(true); })
-        .then(function () { return storage.all(); })
-        .then(function (results) {
-          results.should.eql([]);
-        });
+          .then(function () { return storage.deleteAll(); })
+          .then(function (deleteResult) { deleteResult.should.eql(true); })
+          .then(function () { return storage.all(); })
+          .then(function (results) {
+            results.should.eql([]);
+          });
       });
       it('get missing message', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
