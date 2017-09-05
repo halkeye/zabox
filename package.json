@@ -66,7 +66,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "nyc": "^11.0.2",
     "phantomjs-prebuilt": "^2.1.14",
-    "should": "^12.0.0",
+    "should": "^13.0.0",
     "supertest": "^3.0.0"
   },
   "nyc": {
