@@ -53,7 +53,7 @@
     "jasmine": "^2.2.1",
     "jasmine-core": "^2.6.1",
     "jasmine-spec-reporter": "^4.0.0",
-    "karma": "^1.2.0",
+    "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "^1.0.0",
