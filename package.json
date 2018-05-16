@@ -33,7 +33,7 @@
     "bower": "^1.8.0",
     "commander": "^2.8.0",
     "express": "^4.12.3",
-    "less-middleware": "^2.0.1",
+    "less-middleware": "^3.0.0",
     "lodash": "^4.14.2",
     "mailparser": "^2.0.1",
     "serve-static": "^1.12.2",
