@@ -70,7 +70,7 @@ describe('SmtpServer', function () {
             'X-Laziness-Level: 1000',
             'From: Sender Name <sender@example.com>',
             'To: Receiver Name <nodemailer@disposebox.com>',
-            'Subject: My Test Subject =?UTF-8?Q?=E2=9C=94?=',
+            'Subject: =?UTF-8?Q?My_Test_Subject_=E2=9C=94?=',
             'Message-ID: <my-random-message-id@example.com>',
             'X-Mailer: xmailer-test-string',
             'Content-Transfer-Encoding: 7bit',
