@@ -26,13 +26,13 @@ describe('testing storage engines', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
         storage.should.be.ok();
         var messages = [
-          {id: 'abc-123-456-1', body: { plain: 'foo1' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
-          {id: 'abc-123-456-2', body: { plain: 'foo2' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo'},
-          {id: 'abc-123-456-3', body: { plain: 'foo3' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', bcc: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com'], to: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com']},
-          {id: 'abc-123-456-4', body: { html: '<b>hi</b>', plain: 'foo4' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', bcc: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com']},
-          {id: 'abc-123-456-5', body: { plain: 'foo5' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', cc: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com']},
-          {id: 'abc-123-456-6', body: { plain: 'foo6' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', to: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com']},
-          {id: 'abc-123-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['Head: 1']}
+          { id: 'abc-123-456-1', body: { plain: 'foo1' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo' },
+          { id: 'abc-123-456-2', body: { plain: 'foo2' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo' },
+          { id: 'abc-123-456-3', body: { plain: 'foo3' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', bcc: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com'], to: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com'] },
+          { id: 'abc-123-456-4', body: { html: '<b>hi</b>', plain: 'foo4' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', bcc: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com'] },
+          { id: 'abc-123-456-5', body: { plain: 'foo5' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', cc: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com'] },
+          { id: 'abc-123-456-6', body: { plain: 'foo6' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', to: ['zabox@gavinmogan.com', 'gavin@gavinmogan.com'] },
+          { id: 'abc-123-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['Head: 1'] }
         ];
         return Promise.all(
           messages.map(function (message) { return storage.store(message); })
@@ -46,7 +46,7 @@ describe('testing storage engines', function () {
       it('get specific message', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
         storage.should.be.ok();
-        var message = {id: 'abc-723-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah']};
+        var message = { id: 'abc-723-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah'] };
         return storage.store(message)
           .then(function () { return storage.get(message.id); })
           .then(function (result) { message.should.eql(result); });
@@ -54,7 +54,7 @@ describe('testing storage engines', function () {
       it('delete specific message', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
         storage.should.be.ok();
-        var message = {id: 'abc-723-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah']};
+        var message = { id: 'abc-723-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah'] };
         return storage.store(message)
           .then(function () { return storage.delete(message.id); })
           .then(function (deleteResult) { deleteResult.should.eql(true); })
@@ -67,7 +67,7 @@ describe('testing storage engines', function () {
       it('delete all messages', function () {
         var storage = new storageEngines[engine]({ messageLimit: 5 });
         storage.should.be.ok();
-        var message = {id: 'abc-723-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah']};
+        var message = { id: 'abc-723-456-7', body: { plain: 'foo7' }, timestamp: '2007-03-01T13:00:00Z', from: 'Gavin Mogan <gavin@gavinmogan.com>', subject: 'yo', raw: ['blah blah'] };
         storage.store(message)
           .then(function () { return storage.deleteAll(); })
           .then(function (deleteResult) { deleteResult.should.eql(true); })
