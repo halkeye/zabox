@@ -67,7 +67,7 @@
     "nyc": "^12.0.2",
     "phantomjs-prebuilt": "^2.1.14",
     "should": "^13.0.0",
-    "supertest": "^3.0.0"
+    "supertest": "^3.3.0"
   },
   "nyc": {
     "reporter": [
