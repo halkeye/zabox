@@ -39,7 +39,7 @@
     "serve-static": "^1.12.2",
     "smtp-server": "^3.4.7",
     "sqlite3": "^4.0.2",
-    "uuid": "^3.0.1"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "codacy-coverage": "^3.0.0",
